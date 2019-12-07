@@ -1,6 +1,19 @@
 export default class SwapiService {
 
     _apiBase = 'https://swapi.co/api';
+    _imageBase = 'https://starwars-visualguide.com/assets/img';
+
+    _getPersonImgUrl = (id) => {
+        return `${this._imageBase}/characters/${id}.jpg`;
+    }
+
+    _getPlanetImgUrl = (id) => {
+        return `${this._imageBase}/planets/${id}.jpg`;
+    }
+
+    _getStarshipImgUrl = (id) => {
+        return `${this._imageBase}/starships/${id}.jpg`;
+    }
 
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
@@ -8,8 +21,10 @@ export default class SwapiService {
     }
 
     _transformPlanet = (planet) => {
+        const id = this._extractId(planet);
         return {
-            id: this._extractId(planet),
+            id: id,
+            imgSrc: this._getPlanetImgUrl(id),
             name: planet.name,
             population: planet.population,
             rotationPeriod: planet.rotation_period,
@@ -18,8 +33,10 @@ export default class SwapiService {
     }
 
     _transformPerson = (person) => {
+        const id = this._extractId(person);
         return {
-            id: this._extractId(person),
+            id: id,
+            imgSrc: this._getPersonImgUrl(id),
             name: person.name,
             birthYear: person.birth_year,
             eyeColor: person.eye_color,
@@ -30,8 +47,10 @@ export default class SwapiService {
     }
 
     _transformStarship = (starship) => {
+        const id = this._extractId(starship);
         return {
-            id: this._extractId(starship),
+            id: id,
+            imgSrc: this._getStarshipImgUrl(id),
             name: starship.name,
             model: starship.model,
             manufacturer: starship.manufacturer,
