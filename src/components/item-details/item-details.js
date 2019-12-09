@@ -42,7 +42,7 @@ export default class ItemDetails extends Component {
         if (loading) {
             return <Spinner />;
         }
-        const {imgSrc, name, birthYear, eyeColor, gender, height, mass} = item;
+        const {imgSrc, name} = item;
         return(
             <div className="item-details card">
                 <img className="item-image"
