@@ -37,50 +37,28 @@ export default class App extends Component {
     }
 
     render() {
-        const personList = (
-            <PersonList
-                onItemsSelected={this.onPersonSelected}>
-                {(i) => (
-                    `${i.name} (${i.birthYear})`
-                )}
-            </PersonList>
-
-        );
-
-        const planetsList = (
-            <PlanetList
-                onItemsSelected={this.onPlanetSelected}>
-                {(i) => (
-                    `${i.name} (${i.diameter})`
-                )}
-            </PlanetList>
-        );
-
-        const starshipsList = (
-            <StarshipList
-                onItemsSelected={this.onStarshipSelected}>
-                {(i) => (
-                    `${i.name} (${i.model})`
-                )}
-            </StarshipList>
-        );
-
         return (
             <div className="container">
                 <Header />
                 <RandomPlanet />
                 <ErrorBoundry>
-                    <Row left={personList} right={
+                    <Row left={
+                        <PersonList onItemsSelected={this.onPersonSelected} />
+                    } right={
                         <PersonDetails itemId={this.state.selectedPerson} />
                     } />
                 </ErrorBoundry>
                 <ErrorBoundry>
-                    <Row left={planetsList} right={
+                    <Row left={
+                        <PlanetList onItemsSelected={this.onPlanetSelected} />
+                    } right={
                         <PlanetDetails itemId={this.state.selectedPlanet} />
                     } />
                 </ErrorBoundry>
                 <ErrorBoundry>
-                    <Row left={starshipsList} right={
+                    <Row left={
+                        <StarshipList onItemsSelected={this.onStarshipSelected} />
+                    } right={
                         <StarshipDetails itemId={this.state.selectedStarship} />
                     } />
                 </ErrorBoundry>
