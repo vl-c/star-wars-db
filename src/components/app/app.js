@@ -7,6 +7,7 @@ import Row from '../row';
 import ErrorBoundry from '../error-boundry';
 import { PersonList, PlanetList, StarshipList } from '../sw-components';
 import { PersonDetails, PlanetDetails, StarshipDetails } from '../sw-components';
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 export default class App extends Component {
 
@@ -39,29 +40,31 @@ export default class App extends Component {
     render() {
         return (
             <div className="container">
-                <Header />
-                <RandomPlanet />
-                <ErrorBoundry>
-                    <Row left={
-                        <PersonList onItemsSelected={this.onPersonSelected} />
-                    } right={
-                        <PersonDetails itemId={this.state.selectedPerson} />
-                    } />
-                </ErrorBoundry>
-                <ErrorBoundry>
-                    <Row left={
-                        <PlanetList onItemsSelected={this.onPlanetSelected} />
-                    } right={
-                        <PlanetDetails itemId={this.state.selectedPlanet} />
-                    } />
-                </ErrorBoundry>
-                <ErrorBoundry>
-                    <Row left={
-                        <StarshipList onItemsSelected={this.onStarshipSelected} />
-                    } right={
-                        <StarshipDetails itemId={this.state.selectedStarship} />
-                    } />
-                </ErrorBoundry>
+                <SwapiServiceProvider value={this.swapiService}>
+                    <Header />
+                    <RandomPlanet />
+                    <ErrorBoundry>
+                        <Row left={
+                            <PersonList onItemsSelected={this.onPersonSelected} />
+                        } right={
+                            <PersonDetails itemId={this.state.selectedPerson} />
+                        } />
+                    </ErrorBoundry>
+                    <ErrorBoundry>
+                        <Row left={
+                            <PlanetList onItemsSelected={this.onPlanetSelected} />
+                        } right={
+                            <PlanetDetails itemId={this.state.selectedPlanet} />
+                        } />
+                    </ErrorBoundry>
+                    <ErrorBoundry>
+                        <Row left={
+                            <StarshipList onItemsSelected={this.onStarshipSelected} />
+                        } right={
+                            <StarshipDetails itemId={this.state.selectedStarship} />
+                        } />
+                    </ErrorBoundry>
+                </SwapiServiceProvider>
             </div>
         );
     }
