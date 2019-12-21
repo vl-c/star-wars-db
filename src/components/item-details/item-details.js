@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import './item-details.css';
-import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 
 export default class ItemDetails extends Component {
-
-    swapiService = new SwapiService();
 
     state = {
         item: null,
@@ -36,11 +33,11 @@ export default class ItemDetails extends Component {
 
     render() {
         const {item, loading} = this.state;
-        if (!item) {
-            return <span>Select a item from a list</span>
-        }
         if (loading) {
             return <Spinner />;
+        }
+        if (!item) {
+            return <span>Select a item from a list</span>
         }
         const {imgSrc, name} = item;
         return(
