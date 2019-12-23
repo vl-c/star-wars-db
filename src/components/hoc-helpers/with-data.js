@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator/error-indicator';
 
-const withData = (View) => (service) => {
+const withData = (View) => {
     return class extends Component {
         state = {
             items: null,
@@ -19,7 +19,7 @@ const withData = (View) => (service) => {
                 loading: true,
                 error: false
             })
-            service()
+            this.props.getData()
                 .then((items) => {
                     this.setState({
                         items,
